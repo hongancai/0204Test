@@ -1,0 +1,46 @@
+{
+    "name": "InputMaster",
+    "maps": [
+        {
+            "name": "Mouse",
+            "id": "4acf3983-a01e-4ecd-b9b6-c87d0c225f2d",
+            "actions": [
+                {
+                    "name": "Control",
+                    "type": "Value",
+                    "id": "d38b165d-d419-4588-86b7-c7d33456fc79",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "49e68b3b-bd26-46cd-95a7-59e13594d2bc",
+                    "path": "<XInputController>/rightStick/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Control",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Xbox",
+            "bindingGroup": "Xbox",
+            "devices": [
+                {
+                    "devicePath": "<XInputController>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
