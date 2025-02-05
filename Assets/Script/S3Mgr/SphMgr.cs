@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using GameObject = UnityEngine.GameObject;
+
 public class SphMgr : MonoBehaviour
 {
     public GameObject spherefabs;
@@ -9,6 +11,7 @@ public class SphMgr : MonoBehaviour
     {
         Idle,
         丟砲塔,
+        Cancel,
         拖砲塔,
     }
     private SphState currentState;
@@ -25,7 +28,7 @@ public class SphMgr : MonoBehaviour
 
     private void OnBtnSphClick()
     {
-        followImage.gameObject.SetActive(true); ;
+        followImage.gameObject.SetActive(true); 
         currentState = SphState.丟砲塔;
         btnSph.interactable = false;
         Debug.Log("開始丟Sph喔");
@@ -41,6 +44,13 @@ public class SphMgr : MonoBehaviour
                 break;
             case SphState.丟砲塔:
                 ProcessPlacingTower();
+                if (Input.GetMouseButtonDown(1))  // 按下右鍵
+                {
+                    currentState = SphState.Cancel;  // 切換到取消狀態
+                }
+                break;
+            case SphState.Cancel:
+                ProcessCancel();
                 break;
             case SphState.拖砲塔:
                 ProcessDargTower();
@@ -48,9 +58,7 @@ public class SphMgr : MonoBehaviour
         }
         if (currentState == SphState.丟砲塔)
         {
-            // 將Image的位置設定為滑鼠位置
             followImage.transform.position = Input.mousePosition;
-            
         }
     }
 
@@ -96,6 +104,20 @@ public class SphMgr : MonoBehaviour
         }
     }
 
+    private void ProcessCancel()
+    {
+        // 隱藏跟隨圖片
+        followImage.gameObject.SetActive(false);
+    
+        // 重新啟用按鈕
+        btnSph.interactable = true;
+    
+        // 重置狀態
+        currentState = SphState.Idle;
+    
+        Debug.Log("取消放置");
+    }
+
     private void ProcessDargTower()
     {
         RaycastHit hit;
@@ -104,6 +126,8 @@ public class SphMgr : MonoBehaviour
         {
             if (hit.transform.gameObject.GetComponent<RoadTag>() != null)
             {
+                Vector3 dragPosition = hit.point;
+                dragPosition.y = 0.5f;
                 cache砲塔.transform.localPosition = hit.point;
             }
         }

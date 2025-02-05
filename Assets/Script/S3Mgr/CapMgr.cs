@@ -14,6 +14,7 @@ public class CapMgr : MonoBehaviour
     }
     private CapState currentState;
     public Button btnCap;
+    public GameObject followImage2;
 
     private GameObject cache砲塔;
     void Start()
@@ -24,8 +25,10 @@ public class CapMgr : MonoBehaviour
 
     private void OnBtnCapClick()
     {
+        followImage2.gameObject.SetActive(true);
         currentState = CapState.丟砲塔;
-        Debug.Log("開始丟Sph喔");
+        btnCap.interactable = false;
+        Debug.Log("開始丟Cap喔");
     }
 
 
@@ -37,11 +40,15 @@ public class CapMgr : MonoBehaviour
                 ProcessIdle();
                 break;
             case CapState.丟砲塔:
-                ProcessDragTower();
+                ProcessPlacingTower();
                 break;
             case CapState.拖砲塔:
                 Process拖砲塔();
                 break;
+        }
+        if (currentState == CapState.丟砲塔)
+        {
+            followImage2.transform.position = Input.mousePosition;
         }
     }
 
@@ -65,7 +72,7 @@ public class CapMgr : MonoBehaviour
         }
     }
 
-    private void ProcessDragTower()
+    private void ProcessPlacingTower()
     {
         if (Input.GetButtonDown("Fire1"))
         {
@@ -80,7 +87,7 @@ public class CapMgr : MonoBehaviour
                     temp.transform.localScale = Vector3.one;
                     temp.transform.localEulerAngles = new Vector3(30, 0, 0);
                     temp.transform.localPosition = hit.point;
-
+                    followImage2.gameObject.SetActive(false);
                     currentState = CapState.Idle; //改變狀態!!!
                 }
             }
