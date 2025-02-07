@@ -93,6 +93,7 @@ public class SphMgr : MonoBehaviour
             {
                 if (hit.transform.gameObject.GetComponent<RoadTag>() != null)
                 {
+                    Vector3 placePosition = hit.point;
                     GameObject temp = Instantiate(spherefabs);
                     temp.transform.localScale = Vector3.one;
                     temp.transform.localEulerAngles = new Vector3(30, 0, 0);
@@ -126,8 +127,6 @@ public class SphMgr : MonoBehaviour
         {
             if (hit.transform.gameObject.GetComponent<RoadTag>() != null)
             {
-                Vector3 dragPosition = hit.point;
-                dragPosition.y = 0.5f;
                 cache砲塔.transform.localPosition = hit.point;
             }
         }
