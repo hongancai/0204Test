@@ -2,13 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class OpenPnl : MonoBehaviour
 {
     public GameObject shopPnl;
-    
+    public Button closeshoBtn;
+
     void Start()
     {
-    shopPnl.gameObject.SetActive(false);
+        shopPnl.gameObject.SetActive(false);
+        closeshoBtn.onClick.AddListener(OnBtnClose);
+    }
+
+    private void OnBtnClose()
+    {
+        shopPnl.gameObject.SetActive(false);
     }
 
 
@@ -20,7 +28,7 @@ public class OpenPnl : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.transform.gameObject.GetComponent<ShopTag>()!= null)
+                if (hit.transform.gameObject.GetComponent<ShopTag>() != null)
                 {
                     shopPnl.gameObject.SetActive(true);
                     Debug.Log("測試開商店");
