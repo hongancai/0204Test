@@ -10,7 +10,7 @@ public class S5Mgr : MonoBehaviour
     public List<Button> goodsButtons;
     public List<GameObject> goodsPnl;
     public List<Button> closegoodsPnlBtn;
-    //public List<GameObject> buyedItem;
+    public List<GameObject> buyedItem;
     public GameObject warningPnl;
     public Button closeWarnBtn;
 
@@ -22,7 +22,7 @@ public class S5Mgr : MonoBehaviour
         // 初始化所有已購買物品的顯示狀態
         for (int i = 0; i < 5; i++)
         {
-            //buyedItem[i].SetActive(GameDB.Bought[i]);
+            buyedItem[i].SetActive(GameDB.Bought[i]);
         }
 
         // 初始化時關閉所有面板
@@ -44,6 +44,7 @@ public class S5Mgr : MonoBehaviour
             int index = i;
             closegoodsPnlBtn[i].onClick.AddListener(() => ClosePanel(index));
         }
+        
     }
 
     private void OpenPanel(int index)
@@ -68,16 +69,70 @@ public class S5Mgr : MonoBehaviour
         }
     }
 
-    //public void OnBtnBuyItem1()
-    //{
-        //if (GameDB.money > 80 && !GameDB.Bought[0])
-        //{
-            //GameDB.money -= 80;
-            //GameDB.Bought[0] = true;
-            //Debug.Log("你買了燒餅");
+    public void OnBtnBuyItem1()
+    {
+        if (GameDB.money > 80 && !GameDB.Bought[0])
+        {
+            GameDB.money -= 80;
+            GameDB.Bought[0] = true;
+            Debug.Log("你買了燒餅");
         }
-        //else
-        //{
-            //Debug.Log("你不夠80塊");
-        //}
-    //}
+        else
+        {
+            Debug.Log("你不夠80塊");
+        }
+    }
+    public void OnBtnBuyItem2()
+    {
+        if (GameDB.money > 100 && !GameDB.Bought[1])
+        {
+            GameDB.money -= 100;
+            GameDB.Bought[1] = true;
+            Debug.Log("你買了貢糖");
+        }
+        else
+        {
+            Debug.Log("你不夠100塊");
+        }
+    }
+    public void OnBtnBuyItem3()
+    {
+        if (GameDB.money > 150 && !GameDB.Bought[3])
+        {
+            GameDB.money -= 150;
+            GameDB.Bought[3] = true;
+            Debug.Log("你買了麵線");
+        }
+        else
+        {
+            Debug.Log("你不夠150塊");
+        }
+    }
+    public void OnBtnBuyItem4()
+    {
+        if (GameDB.money > 250 && !GameDB.Bought[4])
+        {
+            GameDB.money -= 250;
+            GameDB.Bought[4] = true;
+            Debug.Log("你買了燒餅");
+        }
+        else
+        {
+            Debug.Log("你不夠250塊");
+        }
+    }
+    public void OnBtnBuyItem5()
+    {
+        if (GameDB.money > 500 && !GameDB.Bought[5])
+        {
+            GameDB.money -= 500;
+            GameDB.Bought[5] = true;
+            Debug.Log("你買了高粱");
+        }
+        else
+        {
+            Debug.Log("你不夠500塊");
+        }
+    }
+}
+
