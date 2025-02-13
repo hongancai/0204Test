@@ -13,11 +13,17 @@ public class S5Mgr : MonoBehaviour
     public List<GameObject> buyedItem;
     public GameObject warningPnl;
     public Button closeWarnBtn;
+    public Button buy01;
+    public Button buy02;
+    public Button buy03;
+    public Button buy04;
+    public Button buy05;
 
     private GameObject activePanel = null;
 
     void Start()
     {
+        warningPnl.gameObject.SetActive(false);
         //GameDB.Audio.Playbgm(s2bgm);
         // 初始化所有已購買物品的顯示狀態
         for (int i = 0; i < 5; i++)
@@ -45,6 +51,17 @@ public class S5Mgr : MonoBehaviour
             closegoodsPnlBtn[i].onClick.AddListener(() => ClosePanel(index));
         }
         
+        closeWarnBtn.onClick.AddListener(OncCloseWarning);
+        buy01.onClick.AddListener(OnBtnBuyItem1);
+        buy02.onClick.AddListener(OnBtnBuyItem2);
+        buy03.onClick.AddListener(OnBtnBuyItem3);
+        buy04.onClick.AddListener(OnBtnBuyItem4);
+        buy05.onClick.AddListener(OnBtnBuyItem5);
+    }
+
+    private void OncCloseWarning()
+    {
+        warningPnl.gameObject.SetActive(false);
     }
 
     private void OpenPanel(int index)
@@ -75,10 +92,13 @@ public class S5Mgr : MonoBehaviour
         {
             GameDB.money -= 80;
             GameDB.Bought[0] = true;
+            buyedItem[0].SetActive(true);
+            GameDB.Save();
             Debug.Log("你買了燒餅");
         }
         else
         {
+            warningPnl.gameObject.SetActive(true);
             Debug.Log("你不夠80塊");
         }
     }
@@ -88,49 +108,61 @@ public class S5Mgr : MonoBehaviour
         {
             GameDB.money -= 100;
             GameDB.Bought[1] = true;
+            buyedItem[1].SetActive(true);
+            GameDB.Save();
             Debug.Log("你買了貢糖");
         }
         else
         {
+            warningPnl.gameObject.SetActive(true);
             Debug.Log("你不夠100塊");
         }
     }
     public void OnBtnBuyItem3()
     {
-        if (GameDB.money > 150 && !GameDB.Bought[3])
+        if (GameDB.money > 150 && !GameDB.Bought[2])
         {
             GameDB.money -= 150;
-            GameDB.Bought[3] = true;
+            GameDB.Bought[2] = true;
+            buyedItem[2].SetActive(true);
+            GameDB.Save();
             Debug.Log("你買了麵線");
         }
         else
         {
+            warningPnl.gameObject.SetActive(true);
             Debug.Log("你不夠150塊");
         }
     }
     public void OnBtnBuyItem4()
     {
-        if (GameDB.money > 250 && !GameDB.Bought[4])
+        if (GameDB.money > 250 && !GameDB.Bought[3])
         {
             GameDB.money -= 250;
-            GameDB.Bought[4] = true;
+            GameDB.Bought[3] = true;
+            buyedItem[3].SetActive(true);
+            GameDB.Save();
             Debug.Log("你買了燒餅");
         }
         else
         {
+            warningPnl.gameObject.SetActive(true);
             Debug.Log("你不夠250塊");
         }
     }
     public void OnBtnBuyItem5()
     {
-        if (GameDB.money > 500 && !GameDB.Bought[5])
+        if (GameDB.money > 500 && !GameDB.Bought[4])
         {
             GameDB.money -= 500;
-            GameDB.Bought[5] = true;
+            GameDB.Bought[4] = true;
+            buyedItem[4].SetActive(true);
+            GameDB.Save();
             Debug.Log("你買了高粱");
         }
         else
         {
+            warningPnl.gameObject.SetActive(true);
             Debug.Log("你不夠500塊");
         }
     }
