@@ -4,9 +4,16 @@ using UnityEngine;
 
 public static class GameDB
 {
+    //Tower
     public static int towerhp = 0;
-
+    
+    //PlayerMoney
     public static int money = 1000;
+    
+    //Pause
+    public static bool isGamepause;
+    
+    //Shop
     public static List<bool> Bought = new List<bool>();
     
     private static bool isInitialized = false;

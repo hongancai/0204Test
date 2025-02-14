@@ -28,6 +28,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Menu",
+            "id": "84d5a1bb-543d-48ea-baee-181265275e80",
+            "actions": [
+                {
+                    "name": "PauseMenu",
+                    "type": "Button",
+                    "id": "61d3c6d6-02e4-4f10-9feb-08905bce3234",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "10a61e42-7dbc-4a84-b160-2ddead39d03d",
+                    "path": "<XInputController>/{Menu}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PauseMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

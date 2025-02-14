@@ -5,14 +5,31 @@ using UnityEngine.UI;
 
 public class Teach : MonoBehaviour
 {
+    public GameObject teachPnl;
     public GameObject[] image;
-    public Button rBtn;
+    public Button rBtn; 
     public Button lBtn;
+    public Button openTeachBtn;
+    public Button closeTeachBtn;
     
     void Start()
     {
+        teachPnl.gameObject.SetActive(false);
         rBtn.onClick.AddListener(OnNextPageBtn);
         lBtn.onClick.AddListener(OnPreviousPageBtn);
+        openTeachBtn.onClick.AddListener(OnOpenTeachtn);
+        closeTeachBtn.onClick.AddListener(OnCloseTeachBtn);
+    }
+    
+    public void OnOpenTeachtn()
+    {
+        teachPnl.gameObject.SetActive(true);
+        Time.timeScale = 0f;
+    }
+    public void OnCloseTeachBtn()
+    {
+        teachPnl.gameObject.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     private void OnPreviousPageBtn()
@@ -40,8 +57,7 @@ public class Teach : MonoBehaviour
             }
         }
     }
-
-
+    
     void Update()
     {
         if (image[4].activeSelf)

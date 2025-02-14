@@ -19,7 +19,7 @@ public class S5Mgr : MonoBehaviour
     public Button buy04;
     public Button buy05;
 
-    private GameObject activePanel = null;
+    public GameObject activePanel = null;
 
     void Start()
     {
@@ -63,7 +63,7 @@ public class S5Mgr : MonoBehaviour
     {
         warningPnl.gameObject.SetActive(false);
     }
-
+    
     private void OpenPanel(int index)
     {
         // 如果有活動面板，先關閉它
