@@ -10,12 +10,10 @@ public class S2Mgr : MonoBehaviour
     void Start()
     {
     }
-
-
-
-    // Update is called once per frame
+    
     void Update()
     {
+        //防止raycast
         if (Input.GetButtonDown("Fire1"))
         {
             if (shopPanel.activeSelf)
