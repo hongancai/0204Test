@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class S2Mgr : MonoBehaviour
 {
     public GameObject prefabs;
-
+    public GameObject shopPanel;
     void Start()
     {
     }
@@ -18,6 +18,10 @@ public class S2Mgr : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
+            if (shopPanel.activeSelf)
+            {
+                return;
+            }
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
