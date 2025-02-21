@@ -11,9 +11,14 @@ public class Teach : MonoBehaviour
     public Button lBtn;
     public Button openTeachBtn;
     public Button closeTeachBtn;
+    public EscMgr escstateMachine;
     
     void Start()
     {
+        if (escstateMachine == null)
+        {
+            Debug.Log("未設置 PanelStateMachine 引用！");
+        }
         teachPnl.gameObject.SetActive(false);
         rBtn.onClick.AddListener(OnNextPageBtn);
         lBtn.onClick.AddListener(OnPreviousPageBtn);
@@ -25,11 +30,19 @@ public class Teach : MonoBehaviour
     {
         teachPnl.gameObject.SetActive(true);
         Time.timeScale = 0f;
+        if (escstateMachine != null)  // 添加空值檢查
+        {
+            escstateMachine.NotifyPanelStateChanged();
+        }
     }
     public void OnCloseTeachBtn()
     {
         teachPnl.gameObject.SetActive(false);
         Time.timeScale = 1f;
+        if (escstateMachine != null)  // 添加空值檢查
+        {
+            escstateMachine.NotifyPanelStateChanged();
+        }
     }
 
     private void OnPreviousPageBtn()

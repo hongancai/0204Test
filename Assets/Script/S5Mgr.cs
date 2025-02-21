@@ -10,7 +10,7 @@ public class S5Mgr : MonoBehaviour
     public List<Button> goodsButtons;
     public List<GameObject> goodsPnl;
     public List<Button> closegoodsPnlBtn;
-    public List<GameObject> buyedItem;
+    //public List<GameObject> buyedItem;
     public GameObject warningPnl;
     public Button closeWarnBtn;
     public Button buy01;
@@ -28,7 +28,7 @@ public class S5Mgr : MonoBehaviour
         // 初始化所有已購買物品的顯示狀態
         for (int i = 0; i < 5; i++)
         {
-            buyedItem[i].SetActive(GameDB.Bought[i]);
+            //buyedItem[i].SetActive(GameDB.Bought[i]);
         }
 
         // 初始化時關閉所有面板
@@ -92,7 +92,7 @@ public class S5Mgr : MonoBehaviour
         {
             GameDB.money -= 80;
             GameDB.Bought[0] = true;
-            buyedItem[0].SetActive(true);
+            //buyedItem[0].SetActive(true);
             GameDB.Save();
             Debug.Log("你買了燒餅");
         }
@@ -108,7 +108,7 @@ public class S5Mgr : MonoBehaviour
         {
             GameDB.money -= 100;
             GameDB.Bought[1] = true;
-            buyedItem[1].SetActive(true);
+            //buyedItem[1].SetActive(true);
             GameDB.Save();
             Debug.Log("你買了貢糖");
         }
@@ -124,7 +124,7 @@ public class S5Mgr : MonoBehaviour
         {
             GameDB.money -= 150;
             GameDB.Bought[2] = true;
-            buyedItem[2].SetActive(true);
+            //buyedItem[2].SetActive(true);
             GameDB.Save();
             Debug.Log("你買了麵線");
         }
@@ -140,7 +140,7 @@ public class S5Mgr : MonoBehaviour
         {
             GameDB.money -= 250;
             GameDB.Bought[3] = true;
-            buyedItem[3].SetActive(true);
+            //buyedItem[3].SetActive(true);
             GameDB.Save();
             Debug.Log("你買了燒餅");
         }
@@ -156,7 +156,7 @@ public class S5Mgr : MonoBehaviour
         {
             GameDB.money -= 500;
             GameDB.Bought[4] = true;
-            buyedItem[4].SetActive(true);
+            //buyedItem[4].SetActive(true);
             GameDB.Save();
             Debug.Log("你買了高粱");
         }

@@ -10,7 +10,8 @@ public class PauseMenu : MonoBehaviour
     public bool isShow;
     public GameObject pausemenu;
     public Teach teachScript;
-   
+    public OpenPnl shopScript;
+    public EscMgr escstateMachine;
 
     private void OnEnable()
     {
@@ -44,20 +45,23 @@ public class PauseMenu : MonoBehaviour
 
     void HandleEscKey()
     {
-        // 檢查教學面板是否開啟
-        if (teachScript.teachPnl.activeSelf)
+        // 添加空值檢查
+        if (teachScript != null && teachScript.teachPnl != null && teachScript.teachPnl.activeSelf)
         {
-            // 如果教學面板開啟，優先關閉教學面板
             teachScript.OnCloseTeachBtn();
+        }
+        else if (shopScript != null && shopScript.IsShopOpen())
+        {
+            shopScript.OnBtnClose();
         }
         else
         {
-            // 教學面板未開啟時，才處理暫停選單
             TogglePauseMenu();
         }
     }
 
-    void TogglePauseMenu()
+
+    public void TogglePauseMenu()
     {
         // 確保教學面板未開啟時才切換暫停選單
         if (!teachScript.teachPnl.activeSelf)
@@ -66,6 +70,7 @@ public class PauseMenu : MonoBehaviour
             pausemenu.SetActive(isShow);
             Time.timeScale = isShow ? 0f : 1f;
             GameDB.isGamepause = isShow;
+            escstateMachine.NotifyPanelStateChanged();
         }
     }
 }

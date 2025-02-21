@@ -245,6 +245,7 @@ MonoBehaviour:
   lBtn: {fileID: 879503279}
   openTeachBtn: {fileID: 544123281}
   closeTeachBtn: {fileID: 518153665}
+  escstateMachine: {fileID: 0}
 --- !u!114 &97142624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,6 +261,8 @@ MonoBehaviour:
   isShow: 0
   pausemenu: {fileID: 1881138833}
   teachScript: {fileID: 97142623}
+  shopScript: {fileID: 0}
+  escstateMachine: {fileID: 0}
 --- !u!1 &119232251
 GameObject:
   m_ObjectHideFlags: 0
