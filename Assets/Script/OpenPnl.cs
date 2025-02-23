@@ -8,7 +8,7 @@ public class OpenPnl : MonoBehaviour
 {
     public GameObject shopPnl;
     public Button closeshoBtn;
-    public EscMgr escstateMachine;
+    //public EscMgr escstateMachine;
     void Start()
     {
         shopPnl.gameObject.SetActive(false);
@@ -18,7 +18,7 @@ public class OpenPnl : MonoBehaviour
     public void OnBtnClose()
     {
         shopPnl.gameObject.SetActive(false);
-        escstateMachine.NotifyPanelStateChanged();
+        //escstateMachine.NotifyPanelStateChanged();
     }
 
 
@@ -33,7 +33,7 @@ public class OpenPnl : MonoBehaviour
                 if (hit.transform.gameObject.GetComponent<ShopTag>() != null)
                 {
                     shopPnl.gameObject.SetActive(true);
-                    escstateMachine.NotifyPanelStateChanged();
+                    //escstateMachine.NotifyPanelStateChanged();
                     Debug.Log("測試開商店");
                 }
             }

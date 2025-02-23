@@ -15,6 +15,7 @@ public static class GameDB
     
     //Shop
     public static List<bool> Bought = new List<bool>();
+    public static List<bool> BoughtTower = new List<bool>();
     
     private static bool isInitialized = false;
     static GameDB()
@@ -35,6 +36,11 @@ public static class GameDB
         {
             Bought.Add(false);
         }
+        BoughtTower.Clear();
+        for (int i = 0; i < 4; i++)
+        {
+            BoughtTower.Add(false);
+        }
     }
 
     public static void BuyItem(int index)
@@ -42,7 +48,14 @@ public static class GameDB
         Bought[index] = true;
         Save();
     }
-
+    public static void BuyTower(int index)
+    {
+        BoughtTower[index] = true;
+        Save();
+    }
+    
+    
+    //PlayerPrefs
     public static void Save()
     {
         PlayerPrefs.SetInt("Money", money);
@@ -59,7 +72,6 @@ public static class GameDB
     public static void Load()
     {
         money = PlayerPrefs.GetInt("Money", 1000);
-        
         // 讀取購買狀態
         for (int i = 0; i < Bought.Count; i++)
         {
