@@ -9,6 +9,7 @@ public class OpenPnl : MonoBehaviour
     public GameObject shopPnl;
     public Button closeshoBtn;
     //public EscMgr escstateMachine;
+    
     void Start()
     {
         shopPnl.gameObject.SetActive(false);
@@ -17,15 +18,17 @@ public class OpenPnl : MonoBehaviour
 
     public void OnBtnClose()
     {
+        Time.timeScale = 1;
         shopPnl.gameObject.SetActive(false);
         //escstateMachine.NotifyPanelStateChanged();
     }
-
+    
 
     void Update()
     {
         if (Input.GetButtonDown("Fire1"))
         {
+            Time.timeScale = 0;
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit))

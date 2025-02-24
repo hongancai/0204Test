@@ -10,10 +10,11 @@ public class S7Mgr : MonoBehaviour
     public List<Button> closegoodsPnlBtn;
     public GameObject warningPnl;
     public Button closeWarnBtn;
-    //public Button buy01;
-    //public Button buy02;
-    //public Button buy03;
-    //public Button buy04;
+    public Button buy02;
+    public Button buy03;
+    public Button buy04;
+    public Button buy05;
+    
     
     public GameObject activePanel = null;
     private bool isPanelOpen = false;
@@ -24,6 +25,16 @@ public class S7Mgr : MonoBehaviour
             int index = i; // 創建一個區域變數來儲存當前索引
             closegoodsPnlBtn[i].onClick.AddListener(() => ClosePanel(index));
         }
+        warningPnl.gameObject.SetActive(false);
+        closeWarnBtn.onClick.AddListener(OncCloseWarning);
+        buy02.onClick.AddListener(OnBtnBuyItem2);
+        buy03.onClick.AddListener(OnBtnBuyItem3);
+        buy04.onClick.AddListener(OnBtnBuyItem4);
+        buy05.onClick.AddListener(OnBtnBuyItem5);
+    }
+    private void OncCloseWarning()
+    {
+        warningPnl.gameObject.SetActive(false);
     }
 
     void Update()
@@ -51,6 +62,7 @@ public class S7Mgr : MonoBehaviour
     // 開啟面板
     private void OpenPanel(int index)
     {
+        Time.timeScale = 0;
         // 如果有其他面板開著，先關閉
         if (activePanel != null)
         {
@@ -67,9 +79,79 @@ public class S7Mgr : MonoBehaviour
     // 關閉面板
     private void ClosePanel(int index)
     {
+        Time.timeScale = 1;
         towerPnl[index].SetActive(false);
         activePanel = null;
         isPanelOpen = false; 
+    }
+   
+
+    private void OnBtnBuyItem2()
+    {
+        if (GameDB.money > 300 && !GameDB.BoughtTower[0])
+        {
+            buy02.gameObject.SetActive(false);
+            GameDB.money -= 300;
+            GameDB.BoughtTower[0] = true;
+            GameDB.Save();
+            Debug.Log("你買了後水頭");
+        }
+        else
+        {
+            warningPnl.gameObject.SetActive(true);
+            Debug.Log("你不夠300塊");
+        }
+    }
+
+    private void OnBtnBuyItem3()
+    {
+        if (GameDB.money > 500 && !GameDB.BoughtTower[1])
+        {
+            buy03.gameObject.SetActive(false);
+            GameDB.money -= 500;
+            GameDB.BoughtTower[1] = true;
+            GameDB.Save();
+            Debug.Log("你買了劉澳");
+        }
+        else
+        {
+            warningPnl.gameObject.SetActive(true);
+            Debug.Log("你不夠300塊");
+        }
+    }
+
+    private void OnBtnBuyItem4()
+    {
+        if (GameDB.money > 700 && !GameDB.BoughtTower[2])
+        {
+            buy04.gameObject.SetActive(false);
+            GameDB.money -= 700;
+            GameDB.BoughtTower[2] = true;
+            GameDB.Save();
+            Debug.Log("你買了安崎");
+        }
+        else
+        {
+            warningPnl.gameObject.SetActive(true);
+            Debug.Log("你不夠700塊");
+        }
+    }
+
+    private void OnBtnBuyItem5()
+    {
+        if (GameDB.money > 1500 && !GameDB.BoughtTower[3])
+        {
+            buy05.gameObject.SetActive(false);
+            GameDB.money -= 1500;
+            GameDB.BoughtTower[3] = true;
+            GameDB.Save();
+            Debug.Log("你買了塔后");
+        }
+        else
+        {
+            warningPnl.gameObject.SetActive(true);
+            Debug.Log("你不夠1500塊");
+        }
     }
 }
 

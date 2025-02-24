@@ -8,7 +8,7 @@ public static class GameDB
     public static int towerhp = 0;
     
     //PlayerMoney
-    public static int money = 1000;
+    public static int money = 10000;
     
     //Pause
     public static bool isGamepause;
@@ -59,23 +59,53 @@ public static class GameDB
     public static void Save()
     {
         PlayerPrefs.SetInt("Money", money);
-        
-        // 儲存購買狀態
+    
+        // 一般商店物品
         for (int i = 0; i < Bought.Count; i++)
         {
-            PlayerPrefs.SetInt($"Bought_{i}", Bought[i] ? 1 : 0);
+            PlayerPrefs.SetInt($"Shop_Bought_{i}", Bought[i] ? 1 : 0);
         }
-        
+    
+        // 塔防商店物品
+        for (int i = 0; i < BoughtTower.Count; i++)
+        {
+            PlayerPrefs.SetInt($"Tower_Bought_{i}", BoughtTower[i] ? 1 : 0);
+        }
         PlayerPrefs.Save();
     }
 
     public static void Load()
     {
-        money = PlayerPrefs.GetInt("Money", 1000);
-        // 讀取購買狀態
+        money = PlayerPrefs.GetInt("Money", 10000);
+    
+        // 一般商店物品
         for (int i = 0; i < Bought.Count; i++)
         {
-            Bought[i] = PlayerPrefs.GetInt($"Bought_{i}", 0) == 1;
+            Bought[i] = PlayerPrefs.GetInt($"Shop_Bought_{i}", 0) == 1;
+        }
+    
+        // 塔防商店物品
+        for (int i = 0; i < BoughtTower.Count; i++)
+        {
+            BoughtTower[i] = PlayerPrefs.GetInt($"Tower_Bought_{i}", 0) == 1;
         }
     }
+    public static void ResetAll()
+    {
+        money = 10000;  // 重置金錢
+    
+        // 重置所有商品購買狀態
+        for (int i = 0; i < Bought.Count; i++)
+        {
+            Bought[i] = false;
+        }
+        for (int i = 0; i < BoughtTower.Count; i++)
+        {
+            BoughtTower[i] = false;
+        }
+    
+        // 儲存重置後的狀態
+        Save();
+    }
+    
 }
