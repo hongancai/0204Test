@@ -16,6 +16,7 @@ public class S2Mgr : MonoBehaviour
         //防止raycast
         if (Input.GetButtonDown("Fire1"))
         {
+            //防止raycast
             if (shopPanel.activeSelf)
             {
                 return;
