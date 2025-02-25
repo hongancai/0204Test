@@ -34,7 +34,8 @@ public class Tower : MonoBehaviour
 
     private void UpdateHealthBar()
     {
-        float hpPercentage = (float)currentHealth / maxHealth;
+        float hpPercentage = currentHealth;
+        Debug.Log(hpPercentage);
         hpHandler.SetHp(hpPercentage);
     }
 }

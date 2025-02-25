@@ -4,27 +4,26 @@ using UnityEngine;
 
 public class HpHandler : MonoBehaviour
 {
+    public float maxHP = 100f;
+    public float currentHP = 100f;
     void Start()
     {
     }
 
     void Update()
     {
+        UpdateHPBar();
     }
-    public void SetHp(float hp)
+    void UpdateHPBar()
     {
-        if (hp < 0.0f || hp > 1.0f)
-        {
-            return;
-        }
-        float s = (1 - hp) / 2;
-        transform.localScale = new Vector3(s
-            , transform.localScale.y
-            , transform.localScale.z);
-
-        transform.localPosition = new Vector3(
-            s * -1
-            , transform.localPosition.y
-            , transform.localPosition.z);
+        float hpPercentage = currentHP / maxHP;
+        // 在此使用 quad 的 scale 來當作血條的變化
+        transform.localScale = new Vector3(hpPercentage, 1f, 1f);
+        // 設定血條的位移
+        transform.localPosition = new Vector3((-0.5f + hpPercentage * 0.5f), transform.localPosition.y, 0f);
+    }
+    public void SetHp(float hpPercentage)
+    {
+        currentHP = Mathf.Clamp(hpPercentage, 0f, maxHP);
     }
 }

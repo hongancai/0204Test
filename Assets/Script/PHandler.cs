@@ -7,24 +7,28 @@ using UnityEngine;
 
 public class PHandler : MonoBehaviour
 {
+    
+    
     private float count;
 
     private IList<GameObject> MList;
 
-    // Start is called before the first frame update
+    
     void Start()
     {
         MList = new List<GameObject>();
     }
 
-    // Update is called once per frame
     void Update()
     {
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"OnTriggerEnter:{other.gameObject.name}");
+        if (other.CompareTag("Enemy"))
+        {
+          
+        }
     }
 
 
