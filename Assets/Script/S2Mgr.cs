@@ -31,7 +31,10 @@ public class S2Mgr : MonoBehaviour
                     GameObject temp = Instantiate(prefabs);
                     temp.transform.localScale = Vector3.one;
                     temp.transform.localEulerAngles = new Vector3(30, 0, 0);
-                    temp.transform.localPosition = hit.point;
+                    
+                    Vector3 position = hit.point;
+                    position.y = 0;
+                    temp.transform.localPosition = position;
                 }
             }
         }
