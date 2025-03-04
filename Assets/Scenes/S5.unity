@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -707,6 +707,7 @@ GameObject:
   - component: {fileID: 97142623}
   - component: {fileID: 97142624}
   - component: {fileID: 97142625}
+  - component: {fileID: 97142626}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -853,6 +854,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs: {fileID: 4791802385720077456, guid: e6cbc5afd76f30f47ba1f86240e473ba, type: 3}
   shopPanel: {fileID: 74928122}
+--- !u!114 &97142626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97142616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e6b1232f036ebd448c4554ced048290, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lionPanels: []
+  shopPanel: {fileID: 74928122}
+  productPanels:
+  - {fileID: 383141511}
+  - {fileID: 760247250}
+  - {fileID: 1729760683}
+  - {fileID: 228273255}
+  - {fileID: 265719138}
+  tutorialPanel: {fileID: 0}
+  pausePanel: {fileID: 0}
+  settingPanel: {fileID: 0}
 --- !u!1 &125892337
 GameObject:
   m_ObjectHideFlags: 0

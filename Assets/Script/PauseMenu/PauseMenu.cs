@@ -6,72 +6,67 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-    private InputMaster _inputMaster;
+    private InputMaster inputMaster;
     public bool isShow;
     public GameObject pausemenu;
-    public Teach teachScript;
-    public OpenPnl shopScript;
-    public EscMgr escstateMachine;
 
     private void OnEnable()
     {
-        _inputMaster = new InputMaster();
-        _inputMaster.Enable();
+        inputMaster = new InputMaster();
+        inputMaster.Enable();
 
-        // 綁定 PauseMenu 鍵
-        _inputMaster.Menu.PauseMenu.performed += context => HandleEscKey();
+        // 綁定 PauseMenu 鍵 - 這裡我們將呼叫 EscMgr 的方法，而不是直接處理
+        inputMaster.Menu.PauseMenu.performed += context => EscMgr.Instance.HandleEscKey();
     }
 
     private void OnDisable()
     {
         // 取消綁定 PauseMenu 鍵
-        _inputMaster.Menu.PauseMenu.performed -= context => HandleEscKey();
-        _inputMaster.Disable();
+        inputMaster.Menu.PauseMenu.performed -= context => EscMgr.Instance.HandleEscKey();
+        inputMaster.Disable();
     }
 
     void Start()
     {
         pausemenu.SetActive(false);
+        isShow = false;
+        
+        // 確保在遊戲開始時，遊戲暫停狀態為 false
+        GameDB.isGamepause = false;
     }
-
-
-    void Update()
+    
+    // 這個方法將由 EscMgr 調用
+    public void OpenPauseMenu()
     {
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
-        {
-            HandleEscKey();
-        }
+        isShow = true;
+        pausemenu.SetActive(true);
+        Time.timeScale = 0f;
+        GameDB.isGamepause = true;
     }
-
-    void HandleEscKey()
+    
+    // 這個方法將由 EscMgr 調用
+    public void ClosePauseMenu()
     {
-        // 添加空值檢查
-        if (teachScript != null && teachScript.teachPnl != null && teachScript.teachPnl.activeSelf)
+        isShow = false;
+        pausemenu.SetActive(false);
+        Time.timeScale = 1f;
+        GameDB.isGamepause = false;
+    }
+    
+    // 舊的切換方法，保留供按鈕使用，但內部調用 EscMgr
+    public void TogglePauseMenu()
+    {
+        if (isShow)
         {
-            teachScript.OnCloseTeachBtn();
-        }
-        else if (shopScript != null && shopScript.IsShopOpen())
-        {
-            shopScript.OnBtnClose();
+            EscMgr.Instance.ClosePausePanel();
         }
         else
         {
-            TogglePauseMenu();
-        }
-    }
-
-
-    public void TogglePauseMenu()
-    {
-        // 確保教學面板未開啟時才切換暫停選單
-        if (!teachScript.teachPnl.activeSelf)
-        {
-            isShow = !isShow;
-            pausemenu.SetActive(isShow);
-            Time.timeScale = isShow ? 0f : 1f;
-            GameDB.isGamepause = isShow;
-            escstateMachine.NotifyPanelStateChanged();
+            // 只有當沒有其他面板開啟時，才能開啟暫停選單
+            if (EscMgr.Instance.CurrentState == EscMgr.ESCPanelState.None)
+            {
+                EscMgr.Instance.OpenPausePanel();
+            }
         }
     }
 }
-
