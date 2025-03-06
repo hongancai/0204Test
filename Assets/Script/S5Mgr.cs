@@ -71,7 +71,7 @@ public class S5Mgr : MonoBehaviour
         {
             activePanel.SetActive(false);
         }
-
+        EscMgr.Instance.OpenProductInfoPanel(index);
         // 開啟新的面板
         goodsPnl[index].SetActive(true);
         activePanel = goodsPnl[index];
@@ -80,6 +80,7 @@ public class S5Mgr : MonoBehaviour
     private void ClosePanel(int index)
     {
         goodsPnl[index].SetActive(false);
+        EscMgr.Instance.CloseProductInfoPanel(index);
         if (activePanel == goodsPnl[index])
         {
             activePanel = null;

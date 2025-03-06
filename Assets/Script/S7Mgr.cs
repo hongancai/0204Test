@@ -15,6 +15,7 @@ public class S7Mgr : MonoBehaviour
     public Button buy03;
     public Button buy04;
     public Button buy05;
+    public GameObject pausemenu;
     public EscMgr escManager;
     
     public GameObject activePanel = null;
@@ -48,6 +49,10 @@ public class S7Mgr : MonoBehaviour
 
     void Update()
     {
+        if (pausemenu.activeSelf)
+        {
+            return;
+        }
         // 只有在沒有開啟面板時才檢測點擊
         if (Input.GetButtonDown("Fire1") && !isPanelOpen && !isClosingPanel)
         {

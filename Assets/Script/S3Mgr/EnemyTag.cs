@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public partial class RoadTag : MonoBehaviour
+public class EnemyTag : MonoBehaviour
 {
+   
     void Start()
     {
-        GetComponent<MeshRenderer>().enabled = false;
+        
     }
-  
+    
 }
