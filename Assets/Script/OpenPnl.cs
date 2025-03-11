@@ -8,8 +8,7 @@ public class OpenPnl : MonoBehaviour
 {
     public GameObject shopPnl;
     public Button closeshoBtn;
-    //public EscMgr escstateMachine;
-    
+    public GameObject pausemenu;
     void Start()
     {
         shopPnl.gameObject.SetActive(false);
@@ -26,6 +25,10 @@ public class OpenPnl : MonoBehaviour
 
     void Update()
     {
+        if (pausemenu.activeSelf)
+        {
+            return;
+        }
         if (Input.GetButtonDown("Fire1"))
         {
             Time.timeScale = 0;
@@ -41,10 +44,5 @@ public class OpenPnl : MonoBehaviour
                 }
             }
         }
-    }
-
-    public bool IsShopOpen()
-    {
-        return shopPnl.activeSelf;
     }
 }

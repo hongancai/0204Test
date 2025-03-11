@@ -20,6 +20,7 @@ public class S5Mgr : MonoBehaviour
     public Button buy05;
 
     public GameObject activePanel = null;
+    
 
     void Start()
     {

@@ -16,7 +16,7 @@ public class PauseMenu : MonoBehaviour
         inputMaster.Enable();
 
         // 綁定 PauseMenu 鍵 - 這裡我們將呼叫 EscMgr 的方法，而不是直接處理
-        inputMaster.Menu.PauseMenu.performed += context => EscMgr.Instance.HandleEscKey();
+        //inputMaster.Menu.PauseMenu.performed += context => EscMgr.Instance.HandleEscKey();
     }
 
     private void OnDisable()
