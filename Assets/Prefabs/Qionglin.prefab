@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6237270612816645109}
   - component: {fileID: 8586772334305497195}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Qionglin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
